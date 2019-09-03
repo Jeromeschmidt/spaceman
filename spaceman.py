@@ -1,6 +1,7 @@
 import random
 
 letters_guessed = list()
+incorrect_guesses = list()
 
 def load_word():
     '''
@@ -63,7 +64,13 @@ def is_guess_in_word(guess, secret_word):
         bool: True if the guess is in the secret_word, False otherwise
     '''
     #TODO: check if the letter guess is in the secret word
+    temp = "".join(incorrect_guesses)
+    if((temp.find(guess) != -1)):
+        print("You've already guessed this letter")
+    else:
+        incorrect_guesses.append(guess)
     if(secret_word.find(guess) != -1):
+        incorrect_guesses.pop(len(incorrect_guesses)-1)
         return True
     return False
 
@@ -71,10 +78,10 @@ def get_guess():
     guess = input("Please enter 1 letter: ")
     if(len(guess) != 1):
         print("Please enter only 1 letter.")
+        guess = ""
         get_guess()
-    else:
-        letters_guessed.append(guess)
-    pass
+    letters_guessed.append(guess)
+    return guess
 
 def spaceman(secret_word):
     '''
@@ -86,25 +93,31 @@ def spaceman(secret_word):
 
     #TODO: Ask the player to guess one letter per round and check that it is only one letter
     guess = get_guess()
-    #letters_guessed.append(guess)
 
     #TODO: Check if the guessed letter is in the secret or not and give the player feedback
     is_guess_in_word(guess, secret_word)
     #TODO: show the guessed word so far
     letters_guessed_to_pass = "".join(letters_guessed)
     result = get_guessed_word(secret_word, letters_guessed_to_pass)#"abcdefghijklmnopqurstuvwxyz")
-    print(letters_guessed_to_pass)
+    print(result)
+    print("you have " + str(len(secret_word) - len(incorrect_guesses)) + " incorrect guesses left")
     #TODO: check if the game has been won or lost
     if(result.find("_") == -1):
         print("GAME WON")
         print("Word was: " + secret_word)
-    elif(len(letters_guessed_to_pass) < 7):
+        print("\n--------------------------------")
+    elif(len(incorrect_guesses) < len(secret_word)):
+        print("\n-------------------------------")
         spaceman(secret_word)
     else:
         print("Sorry you didnt win...")
-
-
+        print("Word was: " + secret_word)
+        print("\n--------------------------------")
 
 #These function calls that will start the game
 secret_word = load_word()
-spaceman(load_word())
+print("Welcome to Spaceman!")
+print("The secret word contains: " + str(len(secret_word)) +" letters")
+print("you have " + str(len(secret_word)) + " incorrect guesses, please enter one word per round")
+print("--------------------------------")
+spaceman(secret_word)
