@@ -115,9 +115,17 @@ def spaceman(secret_word):
         print("\n--------------------------------")
 
 #These function calls that will start the game
-secret_word = load_word()
-print("Welcome to Spaceman!")
-print("The secret word contains: " + str(len(secret_word)) +" letters")
-print("you have " + str(len(secret_word)) + " incorrect guesses, please enter one word per round")
-print("--------------------------------")
-spaceman(secret_word)
+keep_playing = True
+while(keep_playing == True):
+    secret_word = load_word()
+    print("Welcome to Spaceman!")
+    print("The secret word contains: " + str(len(secret_word)) +" letters")
+    print("you have " + str(len(secret_word)) + " incorrect guesses, please enter one word per round")
+    print("--------------------------------")
+    spaceman(secret_word)
+
+    keep_playing = False
+
+    temp = input("Enter 'yes' if you would like to keep playing\n")
+    if(temp == 'yes'):
+        keep_playing = True
