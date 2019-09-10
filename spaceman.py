@@ -107,6 +107,8 @@ def spaceman(secret_word):
         print("Word was: " + secret_word)
         print("\n--------------------------------")
     elif(len(incorrect_guesses) < len(secret_word)):
+        temp = "".join(incorrect_guesses)
+        print("You have guessed: " + temp)
         print("\n-------------------------------")
         spaceman(secret_word)
     else:
@@ -128,4 +130,6 @@ while(keep_playing == True):
 
     temp = input("Enter 'yes' if you would like to keep playing\n")
     if(temp == 'yes'):
+        letters_guessed.clear()
+        incorrect_guesses.clear()
         keep_playing = True
