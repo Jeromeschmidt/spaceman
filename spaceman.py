@@ -27,7 +27,7 @@ def is_word_guessed(secret_word, letters_guessed):
     Returns:
         bool: True only if all the letters of secret_word are in letters_guessed, False otherwise
     '''
-    # TODO: Loop through the letters in the secret_word and check if a letter is not in lettersGuessed
+    #Loop through the letters in the secret_word and check if a letter is not in lettersGuessed
     for i in letters_guessed:
         if(secret_word.find(i) == -1):
             return False
@@ -43,7 +43,7 @@ def get_guessed_word(secret_word, letters_guessed):
         string: letters and underscores.  For letters in the word that the user has guessed correctly, the string should contain the letter at the correct position.  For letters in the word that the user has not yet guessed, shown an _ (underscore) instead.
     '''
 
-    #TODO: Loop through the letters in secret word and build a string that shows the letters that have been guessed correctly so far that are saved in letters_guessed and underscores for the letters that have not been guessed yet
+    #Loop through the letters in secret word and build a string that shows the letters that have been guessed correctly so far that are saved in letters_guessed and underscores for the letters that have not been guessed yet
     word_in_progress = list()
     for i in secret_word:
         if(letters_guessed.find(i, 0, len(secret_word)) != -1):
@@ -63,7 +63,7 @@ def is_guess_in_word(guess, secret_word):
     Returns:
         bool: True if the guess is in the secret_word, False otherwise
     '''
-    #TODO: check if the letter guess is in the secret word
+    #check if the letter guess is in the secret word
     temp = "".join(incorrect_guesses)
     if((temp.find(guess) != -1)):
         print("You've already guessed this letter")
@@ -89,19 +89,19 @@ def spaceman(secret_word):
     Args:
       secret_word (string): the secret word to guess.
     '''
-    #TODO: show the player information about the game according to the project spec
+    #show the player information about the game according to the project spec
 
-    #TODO: Ask the player to guess one letter per round and check that it is only one letter
+    #Ask the player to guess one letter per round and check that it is only one letter
     guess = get_guess()
 
-    #TODO: Check if the guessed letter is in the secret or not and give the player feedback
+    #Check if the guessed letter is in the secret or not and give the player feedback
     is_guess_in_word(guess, secret_word)
-    #TODO: show the guessed word so far
+    #show the guessed word so far
     letters_guessed_to_pass = "".join(letters_guessed)
     result = get_guessed_word(secret_word, letters_guessed_to_pass)#"abcdefghijklmnopqurstuvwxyz")
     print(result)
     print("you have " + str(len(secret_word) - len(incorrect_guesses)) + " incorrect guesses left")
-    #TODO: check if the game has been won or lost
+    #check if the game has been won or lost
     if(result.find("_") == -1):
         print("GAME WON")
         print("Word was: " + secret_word)
@@ -133,3 +133,28 @@ while(keep_playing == True):
         letters_guessed.clear()
         incorrect_guesses.clear()
         keep_playing = True
+
+#UNIT TESTS
+def tests_is_word_guessed():
+    assert is_word_guessed("a", {"a"}) == True
+    assert is_word_guessed("a", {"b"}) == False
+
+def tests_is_guess_in_word():
+    assert is_guess_in_word("a", "a") == True
+
+def test_get_guess():
+    assert get_guess() != None
+
+def test_load_word():
+    assert load_word() != None
+
+def test_spaceman():
+    assert spaceman(secret_word) == None
+
+if __name__ == "__main__":
+    # Run the test function
+    tests()
+    tests_is_guess_in_word()
+    test_get_guess()
+    test_load_word()
+    test_spaceman()

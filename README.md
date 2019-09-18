@@ -13,3 +13,4 @@ Read the [spec here](https://docs.google.com/document/d/1y1WPgJERAuLRJjeSXTf5znj
 - Number of incorrect guesses is equal to length of the mystery word
 - Mystery word is shown when game is finished
 - Tells the user what letters they have already guessed
+- Includes 5 Unit Tests
