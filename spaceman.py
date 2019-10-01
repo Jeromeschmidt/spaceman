@@ -134,22 +134,6 @@ while(keep_playing == True):
         incorrect_guesses.clear()
         keep_playing = True
 
-#UNIT TESTS
-def tests_is_word_guessed():
-    assert is_word_guessed("a", {"a"}) == True
-    assert is_word_guessed("a", {"b"}) == False
-
-def tests_is_guess_in_word():
-    assert is_guess_in_word("a", "a") == True
-
-def test_get_guess():
-    assert get_guess() != None
-
-def test_load_word():
-    assert load_word() != None
-
-def test_spaceman():
-    assert spaceman(secret_word) == None
 
 if __name__ == "__main__":
     # Run the test function
