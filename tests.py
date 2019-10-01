@@ -1,7 +1,4 @@
 import spaceman
-import random
-import io
-import sys
 import unittest
 
 #UNIT TESTS
